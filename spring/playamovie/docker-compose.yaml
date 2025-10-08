@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: 'postgres:latest'
+    restart: unless-stopped
+    environment:
+    - 'POSTGRES_DB=play_a_movie_db'
+    - 'POSTGRES_PASSWORD=luis.jaramillo'
+    - 'POSTGRES_USER=luis'
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/data/postgres
+volumes:
+  pgdata:
