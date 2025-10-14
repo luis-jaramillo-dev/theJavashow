@@ -1,7 +1,5 @@
 package dev.luisjaramillo.challenges;
 
-
-
 public class HomerBeerBatch {
 
     public static void main(String[] args){
@@ -13,5 +11,7 @@ public class HomerBeerBatch {
         batchOfBeer1 = (batchOfBeer1++ > batchOfBeer2 && ++batchOfBeer2< batchOfBeer1 ? ++batchOfBeer1: ++batchOfBeer2);
 
         System.out.println("Homer will have "+ batchOfBeer1 +" and "+ batchOfBeer2);
+        String [] test= new String[3];
+        System.out.println(test.length);
     }
 }
