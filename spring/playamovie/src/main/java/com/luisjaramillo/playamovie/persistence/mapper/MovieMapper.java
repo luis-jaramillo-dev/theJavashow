@@ -34,6 +34,10 @@ public interface MovieMapper {
     @Mapping(source = "title", target = "title")
     @Mapping(source = "releaseDate", target = "releaseDate")
     @Mapping(source = "classification", target = "classification")
+    @Mapping(target = "id", ignore = true )
+    @Mapping(target = "genre", ignore = true)
+    @Mapping(target = "duration", ignore = true)
+    @Mapping(target = "isAvailable", ignore = true)
     void updateMovieFromDto(
             UpdateMovieDto movieDto,
             @MappingTarget MovieEntity movieEntity

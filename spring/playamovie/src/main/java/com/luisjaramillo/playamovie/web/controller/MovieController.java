@@ -5,6 +5,11 @@ import com.luisjaramillo.playamovie.domain.dto.SuggestRequestDto;
 import com.luisjaramillo.playamovie.domain.dto.UpdateMovieDto;
 import com.luisjaramillo.playamovie.domain.service.MovieAIService;
 import com.luisjaramillo.playamovie.domain.service.MovieService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/movies")
+@Tag(name = "Movies", description = "Movies crud operations")
 public class MovieController {
 
     private final MovieService movieService;
@@ -27,6 +33,7 @@ public class MovieController {
     }
 
     @GetMapping()
+
     public List<MovieDto> getAllMovies() {
         return (List<MovieDto>) this.movieService.getAll();
     }
@@ -39,7 +46,15 @@ public class MovieController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MovieDto> getMovieById(@PathVariable Long id) {
+    @Operation(
+            summary = "Find a movie by ID",
+            description = "Return all information about the movie.",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Movie found"),
+                    @ApiResponse(responseCode = "404", description = "Movie not found", content = @Content)
+            }
+    )
+    public ResponseEntity<MovieDto> getMovieById(@Parameter(description = "Movie ID to search", example = "9") @PathVariable Long id) {
         MovieDto movieDto = this.movieService.getMovieById(id);
         if (movieDto != null) {
             return ResponseEntity.ok(movieDto);
