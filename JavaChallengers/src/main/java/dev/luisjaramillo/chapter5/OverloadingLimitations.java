@@ -3,12 +3,11 @@ package dev.luisjaramillo.chapter5;
 public class OverloadingLimitations {
 
 
-    void basicMethod(String stringOne, String stringTwo) throws NullPointerException, NumberFormatException {
-
-
+    private int printLine(String stringOne, String stringTwo) {
+        return 0;
     }
 
-    void basicMethod(String stringParameter, int intParameter) {
+    public void printLine(String stringParameter, String intParameter) {
 
     }
 
